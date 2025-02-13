@@ -1,0 +1,69 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Codex2Json_Av.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Codex2Json_Av.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Codex2Json Converter"
+        Width="700" Height="150"
+        CanResize="False">
+  <!-- 🚀 This removes the maximize button -->
+
+  <Design.DataContext>
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
+
+  <Grid Margin="10">
+    <!-- Define Grid Rows and Columns -->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <!-- Expands to fill available space -->
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+
+    <!-- Label -->
+    <TextBlock Text="Enter Directory:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
+
+    <!-- Directory Input & Browse Button -->
+    <Grid Grid.Row="0" Grid.Column="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      <TextBox Text="{Binding DirectoryPath}" HorizontalAlignment="Stretch" Margin="5"/>
+      <Button Content="Browse..." Command="{Binding BrowseCommand}" Width="80" Grid.Column="1" Margin="5"/>
+    </Grid>
+
+    <!-- Process Button -->
+    <Button Content="Generate JSON" Command="{Binding ProcessCommand}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="5"/>
+
+    <!-- JSON File Label -->
+    <TextBlock Text="JSON File:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
+
+    <!-- Result Output -->
+    <TextBox Text="{Binding ResultMessage}"
+             Grid.Row="2" Grid.Column="1"
+             Margin="5"
+             Foreground="White"
+             IsReadOnly="True"
+             Background="LightBlue"
+             BorderThickness="1"
+             MinHeight="20"
+             TextWrapping="Wrap"
+             HorizontalAlignment="Stretch"/>
+  </Grid>
+
+</Window>
+
+
+
